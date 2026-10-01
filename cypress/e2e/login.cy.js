@@ -1,7 +1,9 @@
 describe('Login', () => {
-  it('Login with valid data should allow to enter in the system', () => {
+  beforeEach(() => {
     cy.visit('http://localhost:4000')
-    
+  })
+
+  it('Login with valid data should allow to enter in the system', () => {
     cy.get('#username').click().type('julio.lima')
     cy.get('#senha').click().type('123456')
     cy.contains('button', 'Entrar').click()
@@ -9,9 +11,7 @@ describe('Login', () => {
     cy.contains('h4', 'Realizar Transferência').should('be.visible')
   })
 
-  it('Login with invalid data should generate error message', () => {
-    cy.visit('http://localhost:4000')
-    
+  it('Login with invalid data should generate error message', () => {    
     cy.get('#username').click().type('julio.lima')
     cy.get('#senha').click().type('654321')
     cy.contains('button', 'Entrar').click()
